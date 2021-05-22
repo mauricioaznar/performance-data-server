@@ -21,7 +21,7 @@ function socketMain (io, socket) {
         } else if (key === 'asdfasd'){
             //valid ui client has joined
             socket.join('ui')
-            console.log('A react client has joined')
+            // console.log('A react client has joined')
             Machine.find({}, (err, docs) => {
                 docs.forEach((aMachine) => {
                     // on load assume that all machiens are offline
