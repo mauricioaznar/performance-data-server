@@ -8,7 +8,7 @@ const socketio = require('socket.io');
 const socketMain = require('./socketMain');
 // const expressMain = require('./expressMain');
 
-const port = 8181;
+const port = 4000;
 const num_processes = require('os').cpus().length;
 // Brew breaks for me more than it solves a problem, so I
 // installed redis from https://redis.io/topics/quickstart
