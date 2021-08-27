@@ -23,11 +23,13 @@ function socketMain (io, socket) {
             socket.join('ui')
             // console.log('A react client has joined')
             Machine.find({}, (err, docs) => {
-                docs.forEach((aMachine) => {
-                    // on load assume that all machiens are offline
-                    aMachine.isActive = false
-                    io.to('ui').emit('data', aMachine)
-                })
+                if (docs) {
+                    docs.forEach((aMachine) => {
+                        // on load assume that all machiens are offline
+                        aMachine.isActive = false
+                        io.to('ui').emit('data', aMachine)
+                    })
+                }
             })
         } else {
             socket.disconnect(true)
