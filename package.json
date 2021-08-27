@@ -15,7 +15,7 @@
   "devDependencies": {},
   "scripts": {
     "dev": "env-cmd -f .env.dev nodemon servers.js",
-    "start": "env-cmd -f ./.env nodemon servers.js",
+    "start": "env-cmd -f ./.env node servers.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
