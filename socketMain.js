@@ -22,15 +22,21 @@ function socketMain (io, socket) {
             //valid ui client has joined
             socket.join('ui')
             // console.log('A react client has joined')
-            Machine.find({}, (err, docs) => {
-                if (docs) {
-                    docs.forEach((aMachine) => {
-                        // on load assume that all machiens are offline
-                        aMachine.isActive = false
-                        io.to('ui').emit('data', aMachine)
-                    })
-                }
-            })
+            try {
+                Machine.find({}, (err, docs) => {
+                    if (docs) {
+                        docs.forEach((aMachine) => {
+                            // on load assume that all machiens are offline
+                            aMachine.isActive = false
+                            io.to('ui').emit('data', aMachine)
+                        })
+                    }
+                })
+            } catch (e) {
+                console.log('--------------')
+                console.log(e)
+                console.log('--------------')
+            }
         } else {
             socket.disconnect(true)
         }
