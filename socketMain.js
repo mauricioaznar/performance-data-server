@@ -60,7 +60,9 @@ function socketMain (io, socket) {
         macA = data.macA
         // now go check mongo!
         const mongooseResponse = await checkAndAdd(data)
+        console.log('-----------')
         console.log(mongooseResponse)
+        console.log('-----------')
     })
 
     socket.on('perfData', (data) => {
@@ -73,22 +75,27 @@ function checkAndAdd(data) {
     // because we are doing db stuff, js wont wait for the db
     // so we need to make this a promise
     return new Promise((resolve, reject) => {
-        Machine.findOne(
-            { macA: data.macA },
-            (err, doc) => {
-                if (err) {
-                    throw err;
-                    reject(err)
-                } else if (doc === null) {
-                    // the record is not in the db, so add it
-                    let machine = new Machine(data)
-                    machine.save()
-                    resolve('added')
-                } else {
-                    resolve('found')
+        try {
+            Machine.findOne(
+                { macA: data.macA },
+                (err, doc) => {
+                    if (err) {
+                        throw err;
+                        reject(err)
+                    } else if (doc === null) {
+                        // the record is not in the db, so add it
+                        let machine = new Machine(data)
+                        machine.save()
+                        resolve('added')
+                    } else {
+                        resolve('found')
+                    }
                 }
-            }
-        )
+            )
+        } catch (e) {
+            reject(e)
+        }
+
     })
 }
 
