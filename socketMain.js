@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://maguas:maurisio01@emaily-cluster.dro2u.mongodb.net/perfData?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://mauricio:ZBfrV9fDGcQKvymJ@emaily-cluster.dro2u.mongodb.net/perfData?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
