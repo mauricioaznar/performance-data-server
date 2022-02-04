@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://mauricio:ZBfrV9fDGcQKvymJ@emaily-cluster.dro2u.mongodb.net/perfData?retryWrites=true&w=majority', {
+
+const mongoUser = process.env.MONGO_USER
+const mongoPassword = process.env.MONGO_PASSWORD
+
+
+mongoose.connect(`mongodb+srv://${mongoUser}:${mongoPassword}@emaily-cluster.dro2u.mongodb.net/perfData?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -9,7 +14,6 @@ const Machine = require('./models/Machine')
 // entrypoint from our cluster which will make workes and the workers
 // will do the socket.io handling
 
-console.log(process.env.NODE_ENV)
 
 function socketMain (io, socket) {
     let macA;
